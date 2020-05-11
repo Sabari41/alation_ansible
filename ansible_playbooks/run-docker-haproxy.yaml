@@ -1,0 +1,15 @@
+---
+- name: Run Application with docker
+  hosts: docker
+  become: true
+  vars:
+    USER: "ubuntu"
+
+  tasks:
+  - name: Run the haproxy server with proper inputs from terraform
+    shell: "docker run -d -p 80:80 -v /home/ubuntu/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg haproxy"
+    register: haproxy_output
+
+  - name: Show output of app docker run command
+    debug: 
+      msg: "Container Output: {{haproxy_output.stdout}}"

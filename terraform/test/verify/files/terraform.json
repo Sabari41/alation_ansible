@@ -1,0 +1,7 @@
+{
+  "haproxy-ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "54.193.184.170"
+  }
+}

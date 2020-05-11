@@ -1,0 +1,15 @@
+---
+- name: Run Application with docker
+  hosts: docker
+  become: true
+  vars:
+    USER: "ubuntu"
+
+  tasks:
+  - name: Run the application server which is a static page hosted in nginx
+    shell: "docker run -d -p 8080:80 -v /home/ubuntu/index.html:/usr/share/nginx/html/index.html nginx"
+    register: myapp_output
+
+  - name: Show output of app docker run command
+    debug: 
+      msg: "Container Output: {{myapp_output.stdout}}"
